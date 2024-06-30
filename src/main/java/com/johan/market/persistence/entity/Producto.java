@@ -8,7 +8,7 @@ public class Producto {
     @Id
     @Column(name = "id_producto")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer IdProducto;
+    public Integer idProducto;
     public String nombre;
     @Column(name = "id_categoria")
     public Integer idCategoria;
@@ -20,12 +20,16 @@ public class Producto {
     public Integer cantidadStock;
     public boolean estado;
 
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+    private Categoria categoria;
+
     public Integer getIdProducto() {
-        return IdProducto;
+        return idProducto;
     }
 
     public void setIdProducto(Integer idProducto) {
-        IdProducto = idProducto;
+        this.idProducto = idProducto;
     }
 
     public String getNombre() {
