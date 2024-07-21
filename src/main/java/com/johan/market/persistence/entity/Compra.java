@@ -24,8 +24,11 @@ public class Compra {
     private String comentario;
     private String estado;
 
-    @OneToMany(mappedBy = "producto")
+    @OneToMany(mappedBy = "compra")
     private List<ComprasProducto> productos;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+    private Cliente cliente;
 
     public Integer getIdCompra() {
         return idCompra;
