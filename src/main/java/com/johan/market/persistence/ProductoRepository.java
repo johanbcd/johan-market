@@ -20,12 +20,12 @@ public class ProductoRepository implements ProductRepository {
     }
     @Override
     public Optional<List<Product>>getByCategory(int idCategoria){
-        List<Producto> productos= productoCrudRepository.finByIdCatgoria(idCategoria);
+        List<Producto> productos= productoCrudRepository.findByIdCategoria(idCategoria);
         return Optional.of(mapper.toProducts(productos));
     }
     @Override
     public Optional<List<Product>> getScarseProducts(int quantity) {
-       Optional <List<Producto>> productos = productoCrudRepository.findByCantidadStockLessThanEstado(quantity, true);
+       Optional <List<Producto>> productos = productoCrudRepository.findByCantidadStockLessThanAndEstado(quantity, true);
         return productos.map(productos1 -> mapper.toProducts(productos1));
     }
     @Override
@@ -35,7 +35,7 @@ public class ProductoRepository implements ProductRepository {
 
     @Override
     public Optional<List<Product>> getByIdCatagoryOrderByNamaASC(int categoryId) {
-        Optional<List<Producto>> productos =productoCrudRepository.findByIdCategoriaOrderByNombreASC(categoryId);
+        Optional<List<Producto>> productos =productoCrudRepository.findByIdCategoriaOrderByNombreAsc(categoryId);
         return productos.map(productos1 -> mapper.toProducts(productos1));
     }
 

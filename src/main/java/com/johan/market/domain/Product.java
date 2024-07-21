@@ -25,11 +25,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getCatagoryId() {
+    public int getCategoryId() {
         return categoryId;
     }
 
-    public void setCatagoryId(int categoryId) {
+    public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 
