@@ -5,13 +5,16 @@ import com.johan.market.domain.repository.ProductRepository;
 import com.johan.market.persistence.crud.ProductoCrudRepostiory;
 import com.johan.market.persistence.entity.Producto;
 import com.johan.market.persistence.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 @Repository
 public class ProductoRepository implements ProductRepository {
+    @Autowired
     private ProductoCrudRepostiory productoCrudRepository;
+    @Autowired
     private ProductMapper mapper;
     @Override
     public List<Product> getAll(){
@@ -32,9 +35,8 @@ public class ProductoRepository implements ProductRepository {
     public Optional<Product> getProduct(int productId) {
         return productoCrudRepository.findById(productId).map(producto -> mapper.toProduct(producto));
     }
-
     @Override
-    public Optional<List<Product>> getByIdCatagoryOrderByNamaASC(int categoryId) {
+    public Optional<List<Product>> getByIdCategoryOrderByNameAsc(int categoryId) {
         Optional<List<Producto>> productos =productoCrudRepository.findByIdCategoriaOrderByNombreAsc(categoryId);
         return productos.map(productos1 -> mapper.toProducts(productos1));
     }
